@@ -39,12 +39,39 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#">
-                        <i class="ri-pages-line"></i> <span data-key="t-dashboards">Utilisateurs</span>
+                    <a class="nav-link menu-link" href="{{route('customer.index')}}">
+                        <i class="ri-user-line"></i> <span data-key="t-dashboards">Utilisateurs</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route("planning")}}">
+                        <i class="ri-calendar-2-fill"></i> <span data-key="t-dashboards">Planning des RDV</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('exams.index')}}">
+                        <i class="ri-file-list-3-line"></i> <span data-key="t-dashboards">Historique des examens</span>
                     </a>
                 </li>
 
                 @if(Auth::user()->account=='ADMINISTRATEUR')
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarCenter" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                            <i class="ri-heart-add-fill"></i> <span data-key="t-authentication">Types d'examens</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarCenter">
+                            <ul class="nav nav-sm flex-column" >
+                                <li class="nav-item">
+                                    <a href="{{route("type_exam.add",['ajouter'])}}" class="nav-link" data-key="t-calendar"> Ajouter </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route("type_exam.index")}}" class="nav-link" data-key="t-calendar"> Liste </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link menu-link" href="#sidebarBusiness" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
                             <i class="ri-building-line"></i> <span data-key="t-authentication">Centres de santés</span>
@@ -59,6 +86,12 @@
                                 </li>
                             </ul>
                         </div>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="{{route("type_exam.index")}}">
+                            <i class="ri-heart-add-fill"></i> <span data-key="t-dashboards">Types d'examens</span>
+                        </a>
                     </li>
                 @endif
 

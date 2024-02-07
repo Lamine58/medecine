@@ -4,6 +4,7 @@
 
     use Illuminate\Http\Request;
     use App\Models\Business;
+    use App\Models\TypeExam;
     use Illuminate\Support\Facades\Auth;
 
     class BusinessController extends Controller
@@ -25,7 +26,9 @@
                 $title = 'Ajouter un centre de santé';
             }
 
-            return view('business.save',compact('business','title'));
+            $type_exams = TypeExam::paginate(10);
+
+            return view('business.save',compact('business','title','type_exams'));
         }
 
         public function save(Request $request)

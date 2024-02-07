@@ -36,13 +36,9 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="password-input">Mot de passe <span class="text-danger">*</span></label>
                                                 <div class="position-relative auth-pass-inputgroup">
-                                                    <input type="password" name="password" required class="form-control pe-5 password-input" >
+                                                    <input type="password" name="password" required class="form-control pe-5 password-input" placeholder="Mot de passe"x >
                                                     <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                                 </div>
-                                            </div>
-        
-                                            <div class="mb-4">
-                                                <p class="mb-0 fs-12 text-muted"><a href="">Mot de passe oublié?</a></p>
                                             </div>
         
                                             <div class="mt-4">
@@ -106,7 +102,7 @@
                             backgroundColor: "#4CAF50", // green
                         }).showToast();
 
-                        window.location='{{route("user.index")}}'
+                        window.location='{{route("dashboard")}}'
                     }else{
                         Toastify({
                             text: result.message,

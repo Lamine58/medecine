@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Business extends Model
+class TypeExamBusiness extends Model
 {
     use HasFactory;
     public $incrementing = false;
@@ -27,19 +27,18 @@ class Business extends Model
         });
     }
 
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
+    public static function day ($index){
 
-    public function exams()
-    {
-        return $this->hasMany(Exam::class);
-    }
+        $week = [
+            1 => "Lundi",
+            2 => "Mardi",
+            3 => "Mercredi",
+            4 => "Jeudi",
+            5 => "Vendredi",
+            6 => "Samedi",
+            7 => "Dimanche"
+        ];
 
-    public function typeExams()
-    {
-        return $this->belongsToMany(TypeExam::class, 'type_exam_businesses', 'business_id', 'type_exam_id');
+        return $week[$index];
     }
-
 }

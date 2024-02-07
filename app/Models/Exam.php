@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Business extends Model
+class Exam extends Model
 {
     use HasFactory;
     public $incrementing = false;
@@ -16,8 +16,7 @@ class Business extends Model
         'created_at',
         'updated_at',
     ];
-
-
+    
     protected static function boot()
     {
         parent::boot();
@@ -26,20 +25,14 @@ class Business extends Model
             $model->id = Str::uuid();
         });
     }
-
-    public function users()
+    
+    public function type_exam()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(TypeExam::class);
     }
 
-    public function exams()
+    public function customer()
     {
-        return $this->hasMany(Exam::class);
+        return $this->belongsTo(Customer::class);
     }
-
-    public function typeExams()
-    {
-        return $this->belongsToMany(TypeExam::class, 'type_exam_businesses', 'business_id', 'type_exam_id');
-    }
-
 }

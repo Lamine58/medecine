@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Business extends Model
+class TypeExam extends Model
 {
     use HasFactory;
     public $incrementing = false;
@@ -27,19 +27,9 @@ class Business extends Model
         });
     }
 
-    public function users()
+    public function businesses()
     {
-        return $this->hasMany(User::class);
-    }
-
-    public function exams()
-    {
-        return $this->hasMany(Exam::class);
-    }
-
-    public function typeExams()
-    {
-        return $this->belongsToMany(TypeExam::class, 'type_exam_businesses', 'business_id', 'type_exam_id');
+        return $this->belongsToMany(Business::class, 'type_exam_businesses', 'type_exam_id', 'business_id');
     }
 
 }
