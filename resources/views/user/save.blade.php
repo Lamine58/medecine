@@ -55,7 +55,7 @@
                                                     </div>
         
                                                     @if(Auth::user()->account=='ADMINISTRATEUR')
-                                                        <div  class="mt-3 hidden business">
+                                                        <div  class="mt-3 {{$user->account!="CENTRE DE SANTE" ? 'hidden' : '' }} business">
                                                             <label class="form-label">Centre de santé</label>
                                                             <select id="business_id" class="form-control" name="business_id"> 
                                                                 @foreach($businesses as $business)

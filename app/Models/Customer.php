@@ -60,4 +60,9 @@ class Customer extends Authenticatable
         return $this->hasMany(Exam::class);
     }
 
+    public function archives()
+    {
+        return $this->hasMany(Archive::class);
+    }
+
 }

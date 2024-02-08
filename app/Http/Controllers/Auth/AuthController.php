@@ -23,12 +23,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            if(Auth::user()->account != 'ENQUETEUR'){
-                return response()->json(['message' => 'Connexion réussie', 'status' => 'success']);
-            }else{
-                Auth::logout();
-                return response()->json(['message' => 'Espace interdit aux enquêteurs', 'status' => 'error'], 401);
-            }
+            return response()->json(['message' => 'Connexion réussie', 'status' => 'success']);
         } else {
             return response()->json(['message' => 'Identifiants invalides', 'status' => 'error'], 401);
         }

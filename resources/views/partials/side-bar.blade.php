@@ -57,8 +57,25 @@
                 </li>
 
                 @if(Auth::user()->account=='ADMINISTRATEUR')
+                
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#sidebarCenter" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                        <a class="nav-link menu-link" href="#sidebarOtherExam" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarOtherExam">
+                            <i class="ri-wheelchair-line"></i> <span data-key="t-authentication">Liste d'examens</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarOtherExam">
+                            <ul class="nav nav-sm flex-column" >
+                                <li class="nav-item">
+                                    <a href="{{route("other_exam.add",['ajouter'])}}" class="nav-link" data-key="t-calendar"> Ajouter </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route("other_exam.index")}}" class="nav-link" data-key="t-calendar"> Liste </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarCenter" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCenter">
                             <i class="ri-heart-add-fill"></i> <span data-key="t-authentication">Types d'examens</span>
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarCenter">

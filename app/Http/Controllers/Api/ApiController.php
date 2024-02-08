@@ -10,7 +10,9 @@
     use App\Models\Customer;
     use App\Models\Business;
     use App\Models\Exam;
-
+    use App\Models\Archive;
+    use App\Models\OtherExam;
+    
     class ApiController extends Controller
     {
 
@@ -41,6 +43,8 @@
             }
 
             $customer->email = $request->email;
+            $customer->first_name = $request->first_name;
+            $customer->last_name = $request->last_name;
             $customer->location = $request->location;
             $customer->weight = $request->weight;
             $customer->size = $request->size;
@@ -53,8 +57,28 @@
 
             return response()->json(["customer"=>$customer,'message'=>"Informations enregistré avec succès","status"=>"success"], 200);
         }
+  
+        public function archive_customer(Request $request)
+        {
+                
+            $validator = Validator::make($request->all(), [
+                'id' => 'required',
+            ]);
 
-        
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()], 200);
+            }
+
+            $customer = Customer::findOrfail($request->id);
+            foreach($customer->archives as $archive){
+                $archive->other_exam;
+                $archive->time = date('Y-m-d',strtotime($archive->created_at));
+            }
+            
+            return response()->json(["archives"=>$customer->archives,"other_exam"=>OtherExam::all(),"status"=>"success"], 200);
+
+        }
+
         public function exam_customer(Request $request)
         {
                 
@@ -97,14 +121,6 @@
             }
 
             $exam = new Exam;
-
-            $file = $request->file('card');
-            
-            if ($file) {
-                $filePath = $file->storeAs('public/card', $file->hashName());
-                $exam->card = $filePath ?? '';
-                $exam->card = str_replace('public/','',$customer->card);
-            }
 
             $files = $request->file('files');
             $_data = [];
@@ -177,7 +193,6 @@
             return $hash;
         }
 
-        
         public function exam_center(Request $request)
         {   
             $businesses = Business::all();
@@ -186,6 +201,35 @@
             }
 
             return response()->json(["centre"=>$businesses,"status"=>"success"], 200);
+        }
+
+        
+        public function add_archive(Request $request)
+        {
+            
+            $validator = $request->validate([
+                'file' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg,webp,pdf|max:5048',
+                'other_exam_id' => 'required|string',
+                'customer_id' => 'required|string',
+                'description' => 'required|string',
+                'date' => 'required|date',
+            ]);
+            
+            $data = $request->except(['file']);
+       
+            $file = $request->file('file');
+            if($file){
+                $filePath = $file->storeAs('public/files', $file->hashName());
+                $data['file'] = $filePath ?? '';
+                $data['file'] = str_replace('public/','',$data['file']);
+            }
+
+            $archive = Archive::updateOrCreate(
+                ['id' => $request->id],
+                $data
+            );
+            
+            return response()->json(['message' => 'Archive d\'examen enregistré avec succès',"status"=>"success"]);
         }
 
     }

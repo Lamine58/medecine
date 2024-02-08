@@ -6,6 +6,9 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\TypeExamController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ArchiveController;
+use App\Http\Controllers\OtherExamController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +20,9 @@ use App\Http\Controllers\CustomerController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::get('/linkstorage', function () {
+//     Artisan::call('storage:link');
+// });
 
 
 Route::get('/connexion', [AuthController::class, 'login'])->name('login');
@@ -54,16 +60,30 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/liste-des-utilisateurs', [CustomerController::class, 'index'])->name('customer.index');
     Route::get('/delete-membre', [CustomerController::class, 'delete'])->name('customer.delete');
 
+    #archive
+    Route::get('/liste-des-archive/{id}', [ArchiveController::class, 'index'])->name('archive.index');
+    Route::get('/archive/{id}/{customer_id}', [ArchiveController::class, 'add'])->name('archive.add');
+    Route::post('/save-archive', [ArchiveController::class, 'save'])->name('archive.save');
+    Route::get('/delete-archive', [ArchiveController::class, 'delete'])->name('archive.delete');
+
     Route::middleware(['admin'])->group(function () {
+
         Route::get('/liste-des-centres-de-santes', [BusinessController::class, 'index'])->name('business.index');
         Route::get('/centre-de-sante/{id}', [BusinessController::class, 'add'])->name('business.add');
-        Route::get('/type-examen/{id}', [TypeExamController::class, 'add'])->name('type_exam.add');
         Route::post('/save-business', [BusinessController::class, 'save'])->name('business.save');
+        Route::get('/delete-business', [BusinessController::class, 'delete'])->name('business.delete');
+
+        Route::get('/type-examen/{id}', [TypeExamController::class, 'add'])->name('type_exam.add');
         Route::post('/save-type-exam', [TypeExamController::class, 'save'])->name('type_exam.save');
         Route::post('/save-type-exam-on-business', [TypeExamController::class, 'type_exam_on_business'])->name('type_exam_on_business.save');
-        Route::get('/delete-business', [BusinessController::class, 'delete'])->name('business.delete');
         Route::get('/delete-type-exam', [TypeExamController::class, 'delete'])->name('type_exam.delete');
         Route::get('/delete-type-exam-on-business', [TypeExamController::class, 'delete_type_exam_on_business'])->name('type_exam_on_business.delete');
+
+        Route::get('/examens', [OtherExamController::class, 'index'])->name('other_exam.index');
+        Route::get('/examen/{id}', [OtherExamController::class, 'add'])->name('other_exam.add');
+        Route::post('/save-exam', [OtherExamController::class, 'save'])->name('other_exam.save');
+        Route::get('/delete-exam', [OtherExamController::class, 'delete'])->name('other_exam.delete');
+
     });
 
 });
