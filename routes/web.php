@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\OtherExamController;
+use App\Http\Controllers\DiagnosticController;
+
 
 
 /*
@@ -83,6 +85,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/examen/{id}', [OtherExamController::class, 'add'])->name('other_exam.add');
         Route::post('/save-exam', [OtherExamController::class, 'save'])->name('other_exam.save');
         Route::get('/delete-exam', [OtherExamController::class, 'delete'])->name('other_exam.delete');
+
+        Route::get('/diagnostics', [DiagnosticController::class, 'index'])->name('diagnostic.index');
+        Route::get('/diagnostic/{id}', [DiagnosticController::class, 'diagnostic'])->name('diagnostic.diagnostic');
+        Route::post('/save-diagnostic', [DiagnosticController::class, 'save'])->name('diagnostic.save');
+        Route::get('/delete-diagnostic', [DiagnosticController::class, 'delete'])->name('diagnostic.delete');
 
     });
 

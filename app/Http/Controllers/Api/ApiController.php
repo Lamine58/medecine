@@ -208,26 +208,28 @@
         {
             
             $validator = $request->validate([
-                'file' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg,webp,pdf|max:5048',
+                'avatar' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg,webp,pdf|max:5048',
                 'other_exam_id' => 'required|string',
                 'customer_id' => 'required|string',
                 'description' => 'required|string',
                 'date' => 'required|date',
             ]);
             
-            $data = $request->except(['file']);
-       
-            $file = $request->file('file');
+            $file = $request->file('avatar');
+
+            $archive = new Archive;
+
             if($file){
                 $filePath = $file->storeAs('public/files', $file->hashName());
-                $data['file'] = $filePath ?? '';
-                $data['file'] = str_replace('public/','',$data['file']);
+                $archive->file = $filePath ?? '';
+                $archive->file = str_replace('public/','',$archive->file);
             }
 
-            $archive = Archive::updateOrCreate(
-                ['id' => $request->id],
-                $data
-            );
+            $archive->other_exam_id = $request->other_exam_id;
+            $archive->customer_id = $request->customer_id;
+            $archive->description = $request->description;
+            $archive->date = date("Y-m-d",strtotime($request->date));
+            $archive->save();
             
             return response()->json(['message' => 'Archive d\'examen enregistré avec succès',"status"=>"success"]);
         }

@@ -59,6 +59,19 @@
                 @if(Auth::user()->account=='ADMINISTRATEUR')
                 
                     <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarDiagnostic" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDiagnostic">
+                            <i class="ri-user-heart-line"></i> <span data-key="t-authentication">Type de diagnostiques</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarDiagnostic">
+                            <ul class="nav nav-sm flex-column" >
+                                <li class="nav-item">
+                                    <a href="{{route("diagnostic.index")}}" class="nav-link" data-key="t-calendar"> Liste </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link menu-link" href="#sidebarOtherExam" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarOtherExam">
                             <i class="ri-wheelchair-line"></i> <span data-key="t-authentication">Liste d'examens</span>
                         </a>

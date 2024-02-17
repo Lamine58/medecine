@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::vEQbYyALfm3dGFhT',
+            '_route' => 'generated::E720Kfs8TTwQUPk5',
           ),
           1 => NULL,
           2 => 
@@ -122,7 +122,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::GLnfuSKUtyJ6bhkn',
+            '_route' => 'generated::sFFif4MrNO6gRYFw',
           ),
           1 => NULL,
           2 => 
@@ -141,7 +141,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::tuYq1w1Rvl9cd3iY',
+            '_route' => 'generated::kqqXGyibjcRvQLqb',
           ),
           1 => NULL,
           2 => 
@@ -160,7 +160,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::tUtjLn1Q3MXsqqHL',
+            '_route' => 'generated::VakjcWGcVlRmxyjk',
           ),
           1 => NULL,
           2 => 
@@ -179,7 +179,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::egOExMbCJth3Lkwt',
+            '_route' => 'generated::XoRHr86J6Ybq4VUZ',
           ),
           1 => NULL,
           2 => 
@@ -198,7 +198,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::OKhmepy7lqXFKILN',
+            '_route' => 'generated::Id6xqrW5Qx4Lqqdf',
           ),
           1 => NULL,
           2 => 
@@ -217,7 +217,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::iulTZHeraHY9uBjQ',
+            '_route' => 'generated::FVCgfhGyyZnELPcD',
           ),
           1 => NULL,
           2 => 
@@ -236,7 +236,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::WN01tKFLeGUHlETZ',
+            '_route' => 'generated::2hDhyyKph95nJKnA',
           ),
           1 => NULL,
           2 => 
@@ -256,7 +256,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::U19mhJQzJIbF9hnA',
+            '_route' => 'generated::SilwtO1di5SnFStR',
           ),
           1 => NULL,
           2 => 
@@ -276,7 +276,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Q6cYb21KCv32fS23',
+            '_route' => 'generated::3VVeay4CchURmf9I',
           ),
           1 => NULL,
           2 => 
@@ -296,7 +296,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::vV8x5lsdvBsVpI9t',
+            '_route' => 'generated::oLTlVcKeUnmLQFcv',
           ),
           1 => NULL,
           2 => 
@@ -315,7 +315,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::eKMSQfjDDlLd5tKa',
+            '_route' => 'generated::K03hdQi3FnytqPik',
           ),
           1 => NULL,
           2 => 
@@ -334,7 +334,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::ASzU3qwR7piCNF4L',
+            '_route' => 'generated::KpxcDHIIPgMc7QU0',
           ),
           1 => NULL,
           2 => 
@@ -412,7 +412,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::VOYkCczTnZhY7hYN',
+            '_route' => 'generated::VV6OdeYPXxCsh4eb',
           ),
           1 => NULL,
           2 => 
@@ -859,10 +859,69 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/diagnostics' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'diagnostic.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/save-diagnostic' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'diagnostic.save',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/delete-diagnostic' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'diagnostic.delete',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
     ),
     2 => 
     array (
-      0 => '{^(?|/utilisateur/([^/]++)(*:28)|/liste\\-des\\-archive/([^/]++)(*:64)|/archive/([^/]++)/([^/]++)(*:97)|/centre\\-de\\-sante/([^/]++)(*:131)|/type\\-examen/([^/]++)(*:161)|/examen/([^/]++)(*:185))/?$}sDu',
+      0 => '{^(?|/utilisateur/([^/]++)(*:28)|/liste\\-des\\-archive/([^/]++)(*:64)|/archive/([^/]++)/([^/]++)(*:97)|/centre\\-de\\-sante/([^/]++)(*:131)|/type\\-examen/([^/]++)(*:161)|/examen/([^/]++)(*:185)|/diagnostic/([^/]++)(*:213))/?$}sDu',
     ),
     3 => 
     array (
@@ -989,6 +1048,29 @@ app('router')->setCompiledRoutes(
           0 => 
           array (
             '_route' => 'other_exam.add',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      213 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'diagnostic.diagnostic',
           ),
           1 => 
           array (
@@ -1166,7 +1248,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::vEQbYyALfm3dGFhT' => 
+    'generated::E720Kfs8TTwQUPk5' => 
     array (
       'methods' => 
       array (
@@ -1189,7 +1271,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::vEQbYyALfm3dGFhT',
+        'as' => 'generated::E720Kfs8TTwQUPk5',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1205,7 +1287,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::GLnfuSKUtyJ6bhkn' => 
+    'generated::sFFif4MrNO6gRYFw' => 
     array (
       'methods' => 
       array (
@@ -1225,7 +1307,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::GLnfuSKUtyJ6bhkn',
+        'as' => 'generated::sFFif4MrNO6gRYFw',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1241,7 +1323,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::tuYq1w1Rvl9cd3iY' => 
+    'generated::kqqXGyibjcRvQLqb' => 
     array (
       'methods' => 
       array (
@@ -1261,7 +1343,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::tuYq1w1Rvl9cd3iY',
+        'as' => 'generated::kqqXGyibjcRvQLqb',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1277,7 +1359,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::tUtjLn1Q3MXsqqHL' => 
+    'generated::VakjcWGcVlRmxyjk' => 
     array (
       'methods' => 
       array (
@@ -1297,7 +1379,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::tUtjLn1Q3MXsqqHL',
+        'as' => 'generated::VakjcWGcVlRmxyjk',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1313,7 +1395,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::egOExMbCJth3Lkwt' => 
+    'generated::XoRHr86J6Ybq4VUZ' => 
     array (
       'methods' => 
       array (
@@ -1333,7 +1415,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::egOExMbCJth3Lkwt',
+        'as' => 'generated::XoRHr86J6Ybq4VUZ',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1349,7 +1431,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::OKhmepy7lqXFKILN' => 
+    'generated::Id6xqrW5Qx4Lqqdf' => 
     array (
       'methods' => 
       array (
@@ -1369,7 +1451,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::OKhmepy7lqXFKILN',
+        'as' => 'generated::Id6xqrW5Qx4Lqqdf',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1385,7 +1467,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::iulTZHeraHY9uBjQ' => 
+    'generated::FVCgfhGyyZnELPcD' => 
     array (
       'methods' => 
       array (
@@ -1405,7 +1487,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::iulTZHeraHY9uBjQ',
+        'as' => 'generated::FVCgfhGyyZnELPcD',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1421,7 +1503,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::WN01tKFLeGUHlETZ' => 
+    'generated::2hDhyyKph95nJKnA' => 
     array (
       'methods' => 
       array (
@@ -1442,7 +1524,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::WN01tKFLeGUHlETZ',
+        'as' => 'generated::2hDhyyKph95nJKnA',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1458,7 +1540,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::U19mhJQzJIbF9hnA' => 
+    'generated::SilwtO1di5SnFStR' => 
     array (
       'methods' => 
       array (
@@ -1479,7 +1561,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::U19mhJQzJIbF9hnA',
+        'as' => 'generated::SilwtO1di5SnFStR',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1495,7 +1577,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Q6cYb21KCv32fS23' => 
+    'generated::3VVeay4CchURmf9I' => 
     array (
       'methods' => 
       array (
@@ -1516,7 +1598,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::Q6cYb21KCv32fS23',
+        'as' => 'generated::3VVeay4CchURmf9I',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1532,7 +1614,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::vV8x5lsdvBsVpI9t' => 
+    'generated::oLTlVcKeUnmLQFcv' => 
     array (
       'methods' => 
       array (
@@ -1552,7 +1634,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::vV8x5lsdvBsVpI9t',
+        'as' => 'generated::oLTlVcKeUnmLQFcv',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1568,7 +1650,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::eKMSQfjDDlLd5tKa' => 
+    'generated::K03hdQi3FnytqPik' => 
     array (
       'methods' => 
       array (
@@ -1588,7 +1670,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::eKMSQfjDDlLd5tKa',
+        'as' => 'generated::K03hdQi3FnytqPik',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1604,7 +1686,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ASzU3qwR7piCNF4L' => 
+    'generated::KpxcDHIIPgMc7QU0' => 
     array (
       'methods' => 
       array (
@@ -1624,7 +1706,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::ASzU3qwR7piCNF4L',
+        'as' => 'generated::KpxcDHIIPgMc7QU0',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1751,7 +1833,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::VOYkCczTnZhY7hYN' => 
+    'generated::VV6OdeYPXxCsh4eb' => 
     array (
       'methods' => 
       array (
@@ -1774,7 +1856,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::VOYkCczTnZhY7hYN',
+        'as' => 'generated::VV6OdeYPXxCsh4eb',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2847,6 +2929,161 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'other_exam.delete',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'diagnostic.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'diagnostics',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DiagnosticController@index',
+        'controller' => 'App\\Http\\Controllers\\DiagnosticController@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'diagnostic.index',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'diagnostic.diagnostic' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'diagnostic/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DiagnosticController@diagnostic',
+        'controller' => 'App\\Http\\Controllers\\DiagnosticController@diagnostic',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'diagnostic.diagnostic',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'diagnostic.save' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'save-diagnostic',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DiagnosticController@save',
+        'controller' => 'App\\Http\\Controllers\\DiagnosticController@save',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'diagnostic.save',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'diagnostic.delete' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'delete-diagnostic',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DiagnosticController@delete',
+        'controller' => 'App\\Http\\Controllers\\DiagnosticController@delete',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'diagnostic.delete',
       ),
       'fallback' => false,
       'defaults' => 
