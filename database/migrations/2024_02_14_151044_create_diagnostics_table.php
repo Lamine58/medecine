@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('diagnostics', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->longtext('questions')->nullable();
+            $table->longtext('analyses')->nullable();
             $table->uuid('user_id')->nullable();
             $table->timestamps();
         });

@@ -12,6 +12,30 @@
     class AuthController extends Controller
     {
 
+        public function login_center(Request $request)
+        {
+            $validator = Validator::make($request->all(), [
+                'email' => 'required',
+                'password' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()], 401);
+            }
+
+            $credentials = $request->only('email', 'password');
+
+            if (Auth::attempt($credentials)) {
+
+                $token = auth()->user()->createToken('auth.user',['*'],Carbon::now()->addhours(1))->accessToken;
+                $user = Auth::user();
+                
+                return response()->json(["user"=>$user,"token"=>$token->token,"status"=>"success"], 200);
+
+            } else {
+                return response()->json(["message"=>"Identifiants invalides","status"=>"error"], 401);
+            }
+        }
         
         public function user(Request $request)
         {

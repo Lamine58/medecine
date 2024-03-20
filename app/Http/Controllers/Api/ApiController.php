@@ -12,6 +12,7 @@
     use App\Models\Exam;
     use App\Models\Archive;
     use App\Models\OtherExam;
+    use App\Models\Diagnostic;
     
     class ApiController extends Controller
     {
@@ -203,6 +204,22 @@
             return response()->json(["centre"=>$businesses,"status"=>"success"], 200);
         }
 
+        public function diagnostics(Request $request)
+        {   
+            $diagnostics = Diagnostic::all();
+            foreach($diagnostics as $diagnostic){
+                $diagnostic->questions = json_decode($diagnostic->questions);
+                $diagnostic->analyses = json_decode($diagnostic->analyses);
+                foreach($diagnostic->questions ?? [] as $data):
+                    $data->option = '';
+                    foreach($data->responses as $response):
+                        $response->checked = false;
+                    endforeach;
+                endforeach;
+            }
+
+            return response()->json(["diagnostics"=>$diagnostics,"status"=>"success"], 200);
+        }
         
         public function add_archive(Request $request)
         {

@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login-center', [AuthController::class, 'login_center']);
     Route::post('/user', [AuthController::class, 'user']);
     Route::post('/sign-in', [AuthController::class, 'sign_in']);
     Route::post('/send-code', [AuthController::class, 'send_code']);
@@ -33,4 +34,5 @@ Route::prefix('v1')->group(function () {
     Route::post('/add-exam', [ApiController::class, 'add_exam']);
     Route::post('/add-exam-card', [ApiController::class, 'add_exam_card']);
     Route::post('/add-archive', [ApiController::class, 'add_archive']);
+    Route::get('/diagnostics', [ApiController::class, 'diagnostics']);
 });

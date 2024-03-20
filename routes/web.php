@@ -90,6 +90,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/diagnostic/{id}', [DiagnosticController::class, 'diagnostic'])->name('diagnostic.diagnostic');
         Route::post('/save-diagnostic', [DiagnosticController::class, 'save'])->name('diagnostic.save');
         Route::get('/delete-diagnostic', [DiagnosticController::class, 'delete'])->name('diagnostic.delete');
+        Route::post('/data-diagnostic', [DiagnosticController::class, 'data'])->name('diagnostic.data');
 
     });
 

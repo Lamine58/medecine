@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:1qOq96CYo6o2RsG6LVzP4TOp+mWyBBJysVU4mi38Xo8=',
+    'key' => 'base64:cNn5D1OQaioRYoESUVc+oxbosEDX2pb+zslbv6HoIo8=',
     'cipher' => 'AES-256-CBC',
     'maintenance' => 
     array (
@@ -204,8 +204,8 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\storage\\framework/cache/data',
-        'lock_path' => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\storage\\framework/cache/data',
+        'path' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/storage/framework/cache/data',
+        'lock_path' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/storage/framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -288,7 +288,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'medecine',
+        'database' => 'medecin',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -298,7 +298,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'medecine',
+        'database' => 'medecin',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -318,7 +318,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'medecine',
+        'database' => 'medecin',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -333,7 +333,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'medecine',
+        'database' => 'medecin',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -378,13 +378,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\storage\\app',
+        'root' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/storage/app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\storage\\app/public',
+        'root' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/storage/app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
         'throw' => false,
@@ -404,7 +404,7 @@
     ),
     'links' => 
     array (
-      'C:\\Users\\HP\\Desktop\\laravel\\medecine\\public\\storage' => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\storage\\app/public',
+      '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/public/storage' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/storage/app/public',
     ),
   ),
   'hashing' => 
@@ -445,14 +445,14 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\storage\\logs/laravel.log',
+        'path' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/storage/logs/laravel.log',
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\storage\\logs/laravel.log',
+        'path' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/storage/logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
         'replace_placeholders' => true,
@@ -517,7 +517,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\storage\\logs/laravel.log',
+        'path' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/storage/logs/laravel.log',
       ),
     ),
   ),
@@ -584,7 +584,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\resources\\views/vendor/mail',
+        0 => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/resources/views/vendor/mail',
       ),
     ),
   ),
@@ -697,7 +697,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\storage\\framework/sessions',
+    'files' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/storage/framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -717,9 +717,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\resources\\views',
+      0 => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/resources/views',
     ),
-    'compiled' => 'C:\\Users\\HP\\Desktop\\laravel\\medecine\\storage\\framework\\views',
+    'compiled' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/storage/framework/views',
   ),
   'flare' => 
   array (
@@ -796,7 +796,7 @@
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => 'C:\\Users\\HP\\Desktop\\laravel\\medecine',
+    'remote_sites_path' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',

@@ -22,6 +22,10 @@
                 $title = "Modifier $diagnostic->name";
             }
 
+            $diagnostic->questions = json_decode($diagnostic->questions);
+            $diagnostic->analyses = json_decode($diagnostic->analyses);
+            
+
             return view('diagnostic.diagnostic',compact('diagnostic','title'));
         }
 
@@ -60,5 +64,40 @@
             }else{
                 return response()->json(['message' => 'Echec de la suppression veuillez réessayer',"status"=>"error"]);
             }
+        }
+        
+        public function data(Request $request)
+        {
+            $validator = $request->validate([
+                'name' => 'required|string',
+                'id' => 'required|string'
+            ]);
+
+            $diagnostic = Diagnostic::find($request->id);
+            $diagnostic->name = $request->name;
+
+            $data = [];
+            for ($i=0; $i < count($request->analyses) ; $i++) { 
+                $data[]=["signe"=>$request->signes[$i],"value"=>$request->values[$i],"analyse"=>$request->analyses[$i]];
+            }
+            $diagnostic->analyses = json_encode($data);
+
+            $data = [];
+            for ($i=0; $i < count($request->questions) ; $i++) { 
+                $responses = [];
+                for ($j=0; $j < count($request->responses[$i]); $j++) { 
+                    $responses [] = ["reponse"=>$request->responses[$i][$j],"point"=>$request->points[$i][$j]];
+                }
+                $data[]=["question"=>$request->questions[$i],"type"=>$request->types[$i],"responses"=>$responses];
+            }
+
+            $diagnostic->questions = json_encode($data);
+
+            if($diagnostic->save()){
+                return response()->json(['message' => 'Enregistrement avec succès',"status"=>"success"]);
+            }else{
+                return response()->json(['message' => 'Echec de l\'enregistrement veuillez réessayer',"status"=>"error"]);
+            }
+
         }
     }
