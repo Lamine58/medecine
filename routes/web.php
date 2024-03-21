@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\OtherExamController;
 use App\Http\Controllers\DiagnosticController;
+use App\Http\Controllers\MeasureController;
 
 
 
@@ -67,6 +68,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/archive/{id}/{customer_id}', [ArchiveController::class, 'add'])->name('archive.add');
     Route::post('/save-archive', [ArchiveController::class, 'save'])->name('archive.save');
     Route::get('/delete-archive', [ArchiveController::class, 'delete'])->name('archive.delete');
+
+
+    Route::get('/liste-des-releves/{id}', [MeasureController::class, 'index'])->name('measure.index');
 
     Route::middleware(['admin'])->group(function () {
 

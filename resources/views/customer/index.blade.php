@@ -84,6 +84,11 @@
                                                                 </a>
                                                             </li>
                                                             <li>
+                                                                <a href="{{route('measure.index',[$customer->id])}}" class="dropdown-item remove-item-btn">
+                                                                    <i class="ri-file-list-2-line align-bottom me-2 text-muted" ></i> Historique des relevés
+                                                                </a>
+                                                            </li>
+                                                            <li>
                                                                 <a href="javascript:void(0);" onclick="deleted('{{$customer->id}}','{{route('customer.delete')}}')" class="dropdown-item remove-item-btn">
                                                                     <i class="ri-delete-bin-fill align-bottom me-2 text-muted" ></i> Supprimer
                                                                 </a>
