@@ -4,13 +4,13 @@
     'name' => 'Laravel',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost',
+    'url' => 'http://dev.anepam.fr',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:cNn5D1OQaioRYoESUVc+oxbosEDX2pb+zslbv6HoIo8=',
+    'key' => 'base64:vHtrKGJzBBUQ9LGYzbZiUXAHM35KIknOI4FVMhecaHY=',
     'cipher' => 'AES-256-CBC',
     'maintenance' => 
     array (
@@ -296,7 +296,7 @@
       array (
         'driver' => 'mysql',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
         'database' => 'medecin',
         'username' => 'root',
@@ -316,7 +316,7 @@
       array (
         'driver' => 'pgsql',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
         'database' => 'medecin',
         'username' => 'root',
@@ -331,7 +331,7 @@
       array (
         'driver' => 'sqlsrv',
         'url' => NULL,
-        'host' => '127.0.0.1',
+        'host' => 'localhost',
         'port' => '3306',
         'database' => 'medecin',
         'username' => 'root',
@@ -385,7 +385,7 @@
       array (
         'driver' => 'local',
         'root' => '/Users/isholahasrafidineabdel-lamine/Desktop/Laravel/medcine/storage/app/public',
-        'url' => 'http://localhost/storage',
+        'url' => 'http://dev.anepam.fr/storage',
         'visibility' => 'public',
         'throw' => false,
       ),
@@ -530,11 +530,11 @@
       array (
         'transport' => 'smtp',
         'url' => NULL,
-        'host' => 'mailpit',
-        'port' => '1025',
-        'encryption' => NULL,
-        'username' => NULL,
-        'password' => NULL,
+        'host' => 'ppaci.org',
+        'port' => '465',
+        'encryption' => 'TLS',
+        'username' => 'noreply@ppaci.org',
+        'password' => 'ji!xY0784',
         'timeout' => NULL,
         'local_domain' => NULL,
       ),
@@ -576,7 +576,7 @@
     ),
     'from' => 
     array (
-      'address' => 'hello@example.com',
+      'address' => 'noreply@ppaci.org',
       'name' => 'Laravel',
     ),
     'markdown' => 
@@ -656,7 +656,7 @@
       2 => '127.0.0.1',
       3 => '127.0.0.1:8000',
       4 => '::1',
-      5 => 'localhost',
+      5 => 'dev.anepam.fr',
     ),
     'guard' => 
     array (

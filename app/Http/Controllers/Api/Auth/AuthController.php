@@ -8,6 +8,8 @@
     use Illuminate\Support\Facades\Validator;
     use App\Models\Customer;
     use Carbon\Carbon;
+    use App\Mail\Otp;
+    use Illuminate\Support\Facades\Mail;
 
     class AuthController extends Controller
     {
@@ -27,13 +29,11 @@
 
             if (Auth::attempt($credentials)) {
 
-                $token = auth()->user()->createToken('auth.user',['*'],Carbon::now()->addhours(1))->accessToken;
                 $user = Auth::user();
-                
-                return response()->json(["user"=>$user,"token"=>$token->token,"status"=>"success"], 200);
+                return response()->json(["user"=>$user,"status"=>"success"], 200);
 
             } else {
-                return response()->json(["message"=>"Identifiants invalides","status"=>"error"], 401);
+                return response()->json(["message"=>"Identifiants invalides","status"=>"error"], 200);
             }
         }
         
@@ -55,22 +55,23 @@
         public function login(Request $request)
         {
             $validator = Validator::make($request->all(), [
-                'phone' => 'required',
+                'email' => 'required',
             ]);
 
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 401);
             }
 
-            $customer = Customer::where('phone', $request->phone)->where('state','SUCCESS')->first();
+            $customer = Customer::where('email', $request->email)->where('state','SUCCESS')->first();
             
             if (!$customer) {
-                return response()->json(['message' => 'Aucun compte n\'est lié a ce numéro',"status"=>"error"]);
+                return response()->json(['message' => 'Aucun compte n\'est lié a ce email',"status"=>"error"]);
             } else {
 
                 $customer->hash = $this->hashed();
                 $customer->save();
-                $this->sms('Bienvenue sur '.env('APP_NAME').' votre code de connexion est : '.$customer->hash,$request->phone);
+                // $this->sms('Bienvenue sur '.env('APP_NAME').' votre code de connexion est : '.$customer->hash,$request->phone);
+                Mail::to($customer->email)->send(new Otp($customer->hash));
 
                 return response()->json(['message' => "Connexion effectuée avec succès","customer"=>$customer,"status"=>"success"]);
 
@@ -108,7 +109,8 @@
                     $customer->save();
                 }
                 
-                $this->sms('Bienvenue sur '.env('APP_NAME').' votre code de confirmation est : '.$customer->hash,$request->phone);
+                // $this->sms('Bienvenue sur '.env('APP_NAME').' votre code de confirmation est : '.$customer->hash,$request->phone);
+                Mail::to($customer->email)->send(new Otp($customer->hash));
 
                 return response()->json(['message' => 'Veuillez valider votre compte',"status"=>"success"]);
 
@@ -120,20 +122,21 @@
         public function send_code(Request $request)
         {
             $validator = Validator::make($request->all(), [
-                'phone' => 'required',
+                'email' => 'required',
             ]);
 
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 401);
             }
 
-            $customer = Customer::where('phone', $request->phone)->first();
+            $customer = Customer::where('email', $request->email)->first();
             
             if (!$customer) {
                 return response()->json(['message' => 'Ce compte n\'existe pas.',"status"=>"error"]);
             } else {
 
-                $this->sms('Bienvenue sur '.env('APP_NAME').' votre code de confirmation est : '.$customer->hash,$request->phone);
+                // $this->sms('Bienvenue sur '.env('APP_NAME').' votre code de confirmation est : '.$customer->hash,$request->phone);
+                Mail::to($customer->email)->send(new Otp($customer->hash));
                 return response()->json(['message' => "Code renvoyé avec succès","status"=>"success"]);
             }
 
@@ -143,7 +146,7 @@
         public function verify_code(Request $request)
         {
             $validator = Validator::make($request->all(), [
-                'phone' => 'required',
+                'email' => 'required',
                 'hash' => 'required',
             ]);
 
@@ -151,7 +154,7 @@
                 return response()->json(['error' => $validator->errors()], 401);
             }
 
-            $customer = Customer::where('phone', $request->phone)->where('hash', $request->hash)->first();
+            $customer = Customer::where('email', $request->email)->where('hash', $request->hash)->first();
             
             if (!$customer) {
                 return response()->json(['message' => 'Code invalide veuillez renvoyer un nouveau code',"status"=>"error"]);

@@ -88,7 +88,23 @@
                 for ($j=0; $j < count($request->responses[$i]); $j++) { 
                     $responses [] = ["reponse"=>$request->responses[$i][$j],"point"=>$request->points[$i][$j]];
                 }
-                $data[]=["question"=>$request->questions[$i],"type"=>$request->types[$i],"responses"=>$responses];
+                if($i==0){
+                    $data[]=[
+                            "question"=>$request->questions[$i],
+                            "type"=>$request->types[$i],
+                            "responses"=>$responses,
+                            "condition" => '',
+                            "condition_value" => ''
+                        ];
+                }else{
+                    $data[]=[
+                        "question"=>$request->questions[$i],
+                        "type"=>$request->types[$i],
+                        "responses"=>$responses,
+                        "condition" => $request->condition[$i-1],
+                        "condition_value" => $request->condition_value[$i-1]
+                    ];
+                }
             }
 
             $diagnostic->questions = json_encode($data);

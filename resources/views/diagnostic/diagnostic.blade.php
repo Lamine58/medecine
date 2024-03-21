@@ -55,10 +55,10 @@
                                                     <select name="condition[]" id="type" class="form-control rounded-end form-control-sm">
                                                         <option value="">Si</option>
                                                         @for($j=1;$j<$i+1;$j++)
-                                                            <option value="{{$j}}">Question {{$j}} égale</option>
+                                                            <option {{$data->condition==$j ? 'selected' : ''}} value="{{$j}}">Question {{$j}} égale</option>
                                                         @endfor
                                                     </select>
-                                                    <input placeholder="Valeur" name="condition_value[]" class="form-control form-control-sm rounded-end mt-1" >
+                                                    <input placeholder="Valeur" value="{{$data->condition_value}}" name="condition_value[]" class="form-control form-control-sm rounded-end mt-1" >
                                                 @endif
                                             </div>
                                             <div class="col-md-3">

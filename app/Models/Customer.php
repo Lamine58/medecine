@@ -65,4 +65,9 @@ class Customer extends Authenticatable
         return $this->hasMany(Archive::class);
     }
 
+    public function measures()
+    {
+        return $this->hasMany(Measure::class);
+    }
+
 }

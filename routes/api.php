@@ -31,8 +31,12 @@ Route::prefix('v1')->group(function () {
     Route::get('/exam-center', [ApiController::class, 'exam_center']);
     Route::get('/exam-customer', [ApiController::class, 'exam_customer']);
     Route::get('/archive-customer', [ApiController::class, 'archive_customer']);
+    Route::get('/measure-customer', [ApiController::class, 'measure_customer']);
     Route::post('/add-exam', [ApiController::class, 'add_exam']);
     Route::post('/add-exam-card', [ApiController::class, 'add_exam_card']);
     Route::post('/add-archive', [ApiController::class, 'add_archive']);
+    Route::post('/add-measure', [ApiController::class, 'add_measure']);
     Route::get('/diagnostics', [ApiController::class, 'diagnostics']);
+    Route::get('/customers', [ApiController::class, 'customers']);
+    Route::get('/exams', [ApiController::class, 'exams']);
 });

@@ -11,8 +11,11 @@
     use App\Models\Business;
     use App\Models\Exam;
     use App\Models\Archive;
+    use App\Models\Measure;
     use App\Models\OtherExam;
     use App\Models\Diagnostic;
+    use App\Models\TypeExamBusiness;
+    use App\Models\TypeExam;
     
     class ApiController extends Controller
     {
@@ -77,6 +80,28 @@
             }
             
             return response()->json(["archives"=>$customer->archives,"other_exam"=>OtherExam::all(),"status"=>"success"], 200);
+
+        }
+
+        public function measure_customer(Request $request)
+        {
+                
+            $validator = Validator::make($request->all(), [
+                'id' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()], 200);
+            }
+
+            $customer = Customer::findOrfail($request->id);
+            foreach($customer->measures as $measure){
+                $measure->business;
+                $measure->user;
+                $measure->time = date('Y-m-d H:i:s',strtotime($measure->created_at));
+            }
+            
+            return response()->json(["measures"=>$customer->measures,"status"=>"success"], 200);
 
         }
 
@@ -212,6 +237,7 @@
                 $diagnostic->analyses = json_decode($diagnostic->analyses);
                 foreach($diagnostic->questions ?? [] as $data):
                     $data->option = '';
+                    $data->value = '';
                     foreach($data->responses as $response):
                         $response->checked = false;
                     endforeach;
@@ -219,6 +245,49 @@
             }
 
             return response()->json(["diagnostics"=>$diagnostics,"status"=>"success"], 200);
+        }
+
+        public function customers(Request $request)
+        {   
+            $customers = Customer::all();
+            return response()->json(["customers"=>$customers,"status"=>"success"], 200);
+        }
+
+        public function exams(Request $request)
+        {   
+            $user = User::find($request->id);
+            if($user->account=="ADMINISTRATEUR"){
+                $exams = Exam::all();
+            }else{
+                $business = Business::findOrfail($user->business_id);
+                $exams =  $business->exams;
+            }
+
+            foreach($exams as $exam){
+                $exam->customer;
+                $exam->type_exam;
+                $exam->card = json_decode($exam->card);
+                $exam->files = json_decode($exam->files);
+                $exam->results = json_decode($exam->results);
+            }
+
+            return response()->json(["exams"=>$exams,"status"=>"success"], 200);
+        }
+
+        public function type_exams(Request $request)
+        {   
+            $user = User::find($request->id);
+
+            if($user->account=="ADMINISTRATEUR"){
+                $type_exams = TypeExam::all();
+            }else{
+                $type_exams =  TypeExamBusiness::join('type_exams', 'type_exam_businesses.type_exam_id', '=', 'type_exams.id')
+                    ->where('type_exam_businesses.business_id', $user->business_id)
+                    ->select('type_exams.*')->get();
+            }
+            
+
+            return response()->json(["type_exams"=>$type_exams,"status"=>"success"], 200);
         }
         
         public function add_archive(Request $request)
@@ -249,6 +318,34 @@
             $archive->save();
             
             return response()->json(['message' => 'Archive d\'examen enregistré avec succès',"status"=>"success"]);
+        }
+
+        public function add_measure(Request $request)
+        {
+            
+            $validator = $request->validate([
+                'systolic_bp' => 'required',
+                'diastolic_bp' => 'required',
+                'oxygen_saturation' => 'required',
+                'heart_rate' => 'required',
+                'heart_rhythm' => 'required',
+                'customer_id' => 'required',
+                'user_id' => 'required',
+            ]);
+            
+            $measure = new Measure;
+
+            $measure->systolic_bp = $request->systolic_bp;
+            $measure->diastolic_bp = $request->diastolic_bp;
+            $measure->oxygen_saturation = $request->oxygen_saturation;
+            $measure->heart_rate = $request->heart_rate;
+            $measure->heart_rhythm = $request->heart_rhythm;
+            $measure->customer_id = $request->customer_id;
+            $measure->user_id = $request->user_id;
+            $measure->business_id = $request->business_id;
+            $measure->save();
+            
+            return response()->json(['message' => 'Mesure enregistré avec succès',"status"=>"success"]);
         }
 
     }
