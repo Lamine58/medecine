@@ -13,7 +13,7 @@
         public function index($id)
         {
             $customer = Customer::find($id);
-            $measures = $customer->measures()->paginate(10);
+            $measures = $customer->measures()->orderBy('created_at', 'desc')->paginate(10);
             return view('measure.index',compact('measures','customer'));
         }
     }

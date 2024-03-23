@@ -33,6 +33,8 @@ Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
 
 Route::middleware(['auth'])->group(function () {
 
+    // Route::get('/reservation', [CustomerController::class, 'reservation']);
+
     Route::get('/deconnexion', [AuthController::class, 'logout'])->name('logout');
         
     Route::get('/', function () {
@@ -59,9 +61,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/liste-des-examens', [TypeExamController::class, 'exams'])->name('exams.index');
     Route::post('/set-result', [TypeExamController::class, 'set_result'])->name('type_exam.result');
 
-    #utilisateur
-    Route::get('/liste-des-utilisateurs', [CustomerController::class, 'index'])->name('customer.index');
+    #patient
+    Route::get('/liste-des-patients', [CustomerController::class, 'index'])->name('customer.index');
+    Route::get('/patient/{id}', [CustomerController::class, 'add'])->name('customer.add');
+    Route::post('/save-customer', [CustomerController::class, 'save'])->name('customer.save');
     Route::get('/delete-membre', [CustomerController::class, 'delete'])->name('customer.delete');
+    Route::get('/historique-de-modification/{id}', [CustomerController::class, 'history'])->name('customer.history');
 
     #archive
     Route::get('/liste-des-archive/{id}', [ArchiveController::class, 'index'])->name('archive.index');
@@ -69,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/save-archive', [ArchiveController::class, 'save'])->name('archive.save');
     Route::get('/delete-archive', [ArchiveController::class, 'delete'])->name('archive.delete');
 
-
+    #relevé
     Route::get('/liste-des-releves/{id}', [MeasureController::class, 'index'])->name('measure.index');
 
     Route::middleware(['admin'])->group(function () {

@@ -11,7 +11,7 @@
     {
         public function index()
         {
-            $businesses = Business::paginate(10);
+            $businesses = Business::orderBy('created_at', 'desc')->paginate(10);
             return view('business.index',compact('businesses'));
         }
 
@@ -26,7 +26,7 @@
                 $title = 'Ajouter un centre de santé';
             }
 
-            $type_exams = TypeExam::paginate(10);
+            $type_exams = TypeExam::orderBy('created_at', 'desc')->paginate(10);
 
             return view('business.save',compact('business','title','type_exams'));
         }

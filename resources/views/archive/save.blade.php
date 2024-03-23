@@ -17,7 +17,7 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Utilisateur</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Patient</a></li>
                                     <li class="breadcrumb-item active">{{$title}}</li>
                                 </ol>
                             </div>
@@ -173,6 +173,7 @@
         new DataTable("#table", {
             dom: "Bfrtip",
             paging:false,
+            ordering:false,
             buttons: ["excel"],
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/French.json"

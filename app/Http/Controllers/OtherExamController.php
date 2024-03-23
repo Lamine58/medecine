@@ -15,7 +15,7 @@
     {
         public function index()
         {
-            $other_exams = OtherExam::paginate(10);
+            $other_exams = OtherExam::orderBy('created_at', 'desc')->paginate(10);
             return view('other_exam.index',compact('other_exams'));
         }
 

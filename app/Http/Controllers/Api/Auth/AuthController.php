@@ -84,6 +84,7 @@
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'phone' => 'required',
+                'email' => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -93,31 +94,85 @@
             $customer = Customer::where('phone', $request->phone)->where('state','!=','PENDING')->first();
             
             if ($customer) {
-                return response()->json(['message' => 'Ce compte existe déjà.',"status"=>"error"]);
-            } else {
-
-                    
-                $customer = Customer::where('phone', $request->phone)->where('state','PENDING')->first();
-
-                if(!$customer){
-                    $customer = new Customer;
-                    $customer->first_name = $request->first_name;
-                    $customer->last_name = $request->last_name;
-                    $customer->phone = $request->phone;
-                    $customer->hash = $this->hashed();
-                    $customer->state = 'PENDING';
-                    $customer->save();
-                }
-                
-                // $this->sms('Bienvenue sur '.env('APP_NAME').' votre code de confirmation est : '.$customer->hash,$request->phone);
-                Mail::to($customer->email)->send(new Otp($customer->hash));
-
-                return response()->json(['message' => 'Veuillez valider votre compte',"status"=>"success"]);
-
+                return response()->json(['message' => 'Ce téléphone existe déjà.',"status"=>"error"]);
             }
+
+            $customer = Customer::where('email', $request->email)->where('state','!=','PENDING')->first();
+            
+            if ($customer) {
+                return response()->json(['message' => 'Ce email existe déjà.',"status"=>"error"]);
+            }
+
+            $customer = Customer::where('phone', $request->phone)->where('state','PENDING')->first();
+
+            if(!$customer){
+                $customer = new Customer;
+                $customer->first_name = $request->first_name;
+                $customer->last_name = $request->last_name;
+                $customer->phone = $request->phone;
+                $customer->email = $request->email;
+                $customer->hash = $this->hashed();
+                $customer->state = 'PENDING';
+                $customer->save();
+            }
+            
+            // $this->sms('Bienvenue sur '.env('APP_NAME').' votre code de confirmation est : '.$customer->hash,$request->phone);
+            Mail::to($customer->email)->send(new Otp($customer->hash));
+
+            return response()->json(['message' => 'Veuillez valider votre compte',"status"=>"success"]);
+
+            
 
         }
         
+        public function add_customer(Request $request)
+        {
+            $validator = Validator::make($request->all(), [
+                'first_name' => 'required|string',
+                'last_name' => 'required|string',
+                'phone' => 'required|string',
+                'email' => 'required|email',
+                'location' => 'required|string',
+                'weight' => 'required|string',
+                'size' => 'required|string',
+                'medics' => 'required|string',
+                'origin' => 'required|string',
+                'situation' => 'required|string',
+                'activity' => 'required|string',
+            ]);
+
+            $data = $request->except(['avatar']);
+
+            $customer = Customer::where('email', $data['email'])->where('id', '!=', $request->id)->first();
+            
+            if ($customer) {
+                return response()->json(['message' => 'L\'adresse e-mail est déjà utilisée.',"status"=>"error"]);
+            }
+            
+            $customer = Customer::where('phone', $data['phone'])->where('id', '!=', $request->id)->first();
+            
+            if ($customer) {
+                return response()->json(['message' => 'Le téléphone est déjà utilisée.',"status"=>"error"]);
+            }
+                
+            $file = $request->file('avatar');
+
+            $data['state'] = 'SUCCESS';
+            $data['hash'] = 'HASH';
+
+            if ($file) {
+                $filePath = $file->storeAs('public/avatar', $file->hashName());
+                $data['avatar'] = $filePath ?? '';
+                $data['avatar'] = str_replace('public/','',$data['avatar']);
+            }
+        
+            $customer = Customer::updateOrCreate(
+                ['id' => $request->id],
+                $data
+            );
+
+            return response()->json(['message' => 'Patient enregistré avec succès', 'status' => 'success']);
+        }
 
         public function send_code(Request $request)
         {

@@ -39,4 +39,5 @@ Route::prefix('v1')->group(function () {
     Route::get('/diagnostics', [ApiController::class, 'diagnostics']);
     Route::get('/customers', [ApiController::class, 'customers']);
     Route::get('/exams', [ApiController::class, 'exams']);
+    Route::post('/add-customer', [AuthController::class, 'add_customer']);
 });

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Exam extends Model
+class HistoryCustomer extends Model
 {
     use HasFactory;
     public $incrementing = false;
@@ -16,7 +16,8 @@ class Exam extends Model
         'created_at',
         'updated_at',
     ];
-    
+
+
     protected static function boot()
     {
         parent::boot();
@@ -25,23 +26,14 @@ class Exam extends Model
             $model->id = Str::uuid();
         });
     }
-    
-    public function type_exam()
+
+    public function user()
     {
-        return $this->belongsTo(TypeExam::class);
+        return $this->belongsTo(User::class);
     }
 
     public function customer()
     {
         return $this->belongsTo(Customer::class);
     }
-
-
-    public function business()
-    {
-        return $this->belongsTo(Business::class);
-    }
-
-
-    
 }

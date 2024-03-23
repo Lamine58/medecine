@@ -68,27 +68,96 @@
                                                 <div class="col-lg-6">
                                                     <div class="">
                                                         <label class="form-label">Email</label>
-                                                        <input type="text" name="email" value="{{$customer->email}}" class="form-control rounded-end" />
+                                                        <input type="email" name="email" value="{{$customer->email}}" class="form-control rounded-end" />
                                                     </div>
         
                                                     <div  class="mt-3">
                                                         <label class="form-label">Téléphone</label>
-                                                        <input type="text" name="phone" value="{{$customer->phone}}" class="form-control phone rounded-end" />
+                                                        <input type="text" name="phone" id="phone" value="{{$customer->phone}}" class="form-control rounded-end" />
                                                     </div>
                                                     <br>
                                                 </div>
-                                                <div class="col-lg-12 row">
-                                                    <h4><small>Accès</small></h4>
-                                                    <hr>
-                                                    <div class="col-lg-6">
-                                                        <label class="form-label">Mot de passe</label>
-                                                        <input type="text" name="password" class="form-control rounded-end" />
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="">
+                                                        <label class="form-label">Adresse</label>
+                                                        <input type="text" name="location" value="{{$customer->location}}" class="form-control rounded-end" />
                                                     </div>
-                                                    <div class="col-lg-6">
-                                                        <label class="form-label">Confirmer  le mot de passe</label>
-                                                        <input type="text" name="password_confirmation" class="form-control rounded-end" />
+        
+                                                    <div  class="mt-3">
+                                                        <label class="form-label">Poids</label>
+                                                        <input type="number" name="weight" value="{{$customer->weight}}" class="form-control rounded-end" />
                                                     </div>
                                                 </div>
+
+                                                <div class="col-lg-6">
+                                                    <div class="">
+                                                        <label class="form-label">Taille</label>
+                                                        <input type="number" name="size" value="{{$customer->size}}" class="form-control rounded-end" />
+                                                    </div>
+        
+                                                    <div  class="mt-3">
+                                                        <label class="form-label">Médecin</label>
+                                                        <input type="text" name="medics" value="{{$customer->medics}}" class="form-control rounded-end" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <div class="">
+                                                        <label class="form-label">Origine</label>
+                                                        <select name="origin" class="form-control rounded-end">
+                                                            @if(in_array($customer->origin,['Asian','European','African','North American','South American']))
+                                                                @foreach(['Asian','European','African','North American','South American'] as $origin)
+                                                                    <option {{$customer->origin==$origin ? 'selected' : ''}} >{{$origin}}</option>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach(['Asiatique','Européenne','Africaine','Nord-Américaine','Sud-Américaine'] as $origin)
+                                                                    <option {{$customer->origin==$origin ? 'selected' : ''}} >{{$origin}}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+        
+                                                    <div  class="mt-3">
+                                                        <label class="form-label">Situation</label>
+                                                        <select name="situation" class="form-control rounded-end">
+                                                            @if(in_array($customer->situation,['Married','Single','Divorced','Widower']))
+                                                                @foreach(['Married','Single','Divorced','Widower'] as $situation)
+                                                                    <option {{$customer->situation==$situation ? 'selected' : ''}} >{{$situation}}</option>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach(['Marié','Célibataire','Divorcé','Veuf'] as $situation)
+                                                                    <option {{$customer->situation==$situation ? 'selected' : ''}} >{{$situation}}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                    <br>
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <div class="">
+                                                        <label class="form-label">Activité</label>
+                                                        <select name="activity" class="form-control rounded-end">
+                                                            @if(in_array($customer->activity,['Student','Worker','Manager','Unemployed','Retir']))
+                                                                @foreach(['Student','Worker','Manager','Unemployed','Retir'] as $activity)
+                                                                    <option {{$customer->activity==$activity ? 'selected' : ''}} >{{$activity}}</option>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach(['Étudiant','Travailleur','Manager','Chômeur','Retraite'] as $activity)
+                                                                    <option {{$customer->activity==$activity ? 'selected' : ''}} >{{$activity}}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+        
+                                                    <div  class="mt-3">
+                                                        <label class="form-label">diseases</label>
+                                                        <textarea  name="diseases" class="form-control rounded-end" rows="4">{{$customer->diseases}}</textarea>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                                
                                                 <div class="col-lg-12">
                                                     <button id="add_customer" class="btn btn-primary btn-block" style="width:100%">Enregistrer</button>
                                                 </div>
@@ -114,21 +183,40 @@
 @endsection
 
 @section('css-link')
-    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+
 @endsection
 
 @section('script')
 
+    <style>
+        .iti {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+    </style>
+
     <script>
 
-        $('#account').on('change',()=>{
 
-            if($('#account').val()=='SUPERVISEUR' || $('#account').val()=='ENQUETEUR'){
-                $('.business').removeClass('hidden');
-            }else{
-                $('.business').addClass('hidden');
-            }
+        const input = document.querySelector("#phone");
+        const iti = window.intlTelInput(input, {
+            initialCountry: "auto",
+            geoIpLookup: callback => {
+                fetch("https://ipapi.co/json")
+                    .then(res => res.json())
+                    .then(data => callback(data.country_code))
+                    .catch(() => callback("us"));
+            },
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@20.0.5/build/js/utils.js",
+        });
 
+        input.addEventListener("countrychange", function(e) {
+            var country = iti.getSelectedCountryData();
+            $('#phone').val('+'+country.dialCode);
         });
 
         $('.add_customer').submit(function(e){

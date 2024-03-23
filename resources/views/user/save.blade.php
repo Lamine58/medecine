@@ -48,8 +48,14 @@
                                                             @if(Auth::user()->account=='ADMINISTRATEUR')
                                                                 <option {{$user->account=="ADMINISTRATEUR" ? 'selected' : ''}} >ADMINISTRATEUR</option>
                                                                 <option {{$user->account=="CENTRE DE SANTE" ? 'selected' : ''}}>CENTRE DE SANTE</option>
+                                                                <option {{$user->account=="MEDECIN" ? 'selected' : ''}}>MEDECIN</option>
+                                                                <option {{$user->account=="INFIRMIER" ? 'selected' : ''}}>INFIRMIER</option>
+                                                                <option {{$user->account=="ASSISTANT" ? 'selected' : ''}}>ASSISTANT</option>
                                                             @else
                                                                 <option {{$user->account=="CENTRE DE SANTE" ? 'selected' : ''}}>CENTRE DE SANTE</option>
+                                                                <option {{$user->account=="MEDECIN" ? 'selected' : ''}}>MEDECIN</option>
+                                                                <option {{$user->account=="INFIRMIER" ? 'selected' : ''}}>INFIRMIER</option>
+                                                                <option {{$user->account=="ASSISTANT" ? 'selected' : ''}}>ASSISTANT</option>
                                                             @endif
                                                         </select>
                                                     </div>

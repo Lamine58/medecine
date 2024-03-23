@@ -12,9 +12,9 @@
         public function index()
         {
             if(Auth::user()->account=='ADMINISTRATEUR'){
-                $users = User::paginate(10);
+                $users = User::orderBy('created_at', 'desc')->paginate(10);
             }else{
-                $users = User::where('business_id',Auth::user()->business_id)->paginate(10);
+                $users = User::where('business_id',Auth::user()->business_id)->orderBy('created_at', 'desc')->paginate(10);
             }
             
             return view('user.index',compact('users'));
@@ -82,7 +82,6 @@
             }
             
             return response()->json(['message' => 'Utilisateur enregistré avec succès', 'status' => 'success']);
-            
 
         }
 

@@ -10,7 +10,7 @@
     {
         public function index()
         {
-            $diagnostics = Diagnostic::paginate(10);
+            $diagnostics = Diagnostic::orderBy('created_at', 'desc')->paginate(10);
             return view('diagnostic.index',compact('diagnostics'));
         }
 
@@ -101,8 +101,8 @@
                         "question"=>$request->questions[$i],
                         "type"=>$request->types[$i],
                         "responses"=>$responses,
-                        "condition" => $request->condition[$i-1],
-                        "condition_value" => $request->condition_value[$i-1]
+                        "condition" => $request->condition[$i-1] ?? '',
+                        "condition_value" => $request->condition_value[$i-1] ?? ''
                     ];
                 }
             }

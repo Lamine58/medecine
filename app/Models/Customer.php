@@ -70,4 +70,9 @@ class Customer extends Authenticatable
         return $this->hasMany(Measure::class);
     }
 
+    public function history_customers()
+    {
+        return $this->hasMany(HistoryCustomer::class);
+    }
+
 }

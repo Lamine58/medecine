@@ -17,21 +17,22 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr style="font-family: 'Roboto', sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                        <td class="content-block" style="font-family: 'Roboto', sans-serif; color: #878a99; line-height: 1.5; box-sizing: border-box; font-size: 15px; vertical-align: top; margin: 0; padding: 0 0 24px; text-align: center;" valign="top">
-                                            Nous sommes ravis de vous accueillir sur {{env('APP_NAME')}} Pour finaliser la connexion, veuillez confirmer votre adresse e-mail en utilisant le code de vérification ci-dessous
+                                    <tr style="font-family: 'Roboto', sans-serif; box-sizing: border-box; font-size: 15px; margin: 0; border-top: 1px solid #e9ebec;">
+                                        <td class="content-block" style="line-height: 2;color: #878a99; text-align: start;font-family: 'Roboto', sans-serif; box-sizing: border-box; font-size: 15px; vertical-align: top; margin: 0; padding: 0; padding-top: 15px" valign="top">
+                                            Cher(e) {{$exam->business->legal_name}}, <br><br>
+
+                                            Nous vous informons qu'une nouvelle réservation d'examen a été effectuée dans notre système. Veuillez trouver ci-dessous les détails de la réservation : <br><br>
+                                            
+                                            Nom de l'examen : {{$exam->type_exam->name}}<br>
+                                            Nom du patient : {{$exam->customer->first_name}} {{$exam->customer->last_name}} <br>
+                                            Adresse e-mail du patient : {{$exam->customer->email}} <br>
+                                            Numéro de téléphone du patient : {{$exam->customer->phone}}  <br><br>
+                                            Nous vous demandons de prendre les mesures nécessaires pour assurer que tout soit prêt pour accueillir ce patient le jour de l'examen. <br><br>
+                                            
+                                            Cordialement,
                                         </td>
                                     </tr>
-                                    <tr style="font-family: 'Roboto', sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                        <td class="content-block" style="font-family: 'Roboto', sans-serif; box-sizing: border-box; line-height: 1.5; font-size: 35px; vertical-align: top; margin: 0; padding: 0 0 10px;text-align: center; font-weight: 500;" valign="top">
-                                            {{$otp}}
-                                        </td>
-                                    </tr>
-                                    <tr style="font-family: 'Roboto', sans-serif; box-sizing: border-box; font-size: 14px; margin: 0; border-top: 1px solid #e9ebec;">
-                                        <td class="content-block" style="color: #878a99; text-align: center;font-family: 'Roboto', sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0; padding-top: 15px" valign="top">
-                                            Si vous avez reçu cet email par erreur, veuillez simplement le supprimer. Vous ne serez pas connecté si vous ignorez la confirmation ci-dessus
-                                        </td>
-                                    </tr>
+                                    
                                 </tbody></table>
                             </td>
                         </tr>

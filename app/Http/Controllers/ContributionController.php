@@ -17,11 +17,11 @@
             $business_id = null;
 
             if(Auth::user()->account=="ADMINISTRATEUR"){
-                $contributions = Contribution::paginate(10);
+                $contributions = Contribution::orderBy('created_at', 'desc')->paginate(10);
                 $type = 'ADMINISTRATEUR';
             }else{
                 $contributions =  Contribution::where('business_id', Auth::user()->business_id)
-                    ->paginate(10);
+                    ->orderBy('created_at', 'desc')->paginate(10);
                 $type = '!ADMINISTRATEUR';
                 $business_id = Auth::user()->business_id;
             }

@@ -17,11 +17,11 @@
             $business_id = null;
 
             if(Auth::user()->account=="ADMINISTRATEUR"){
-                $savings = Saving::paginate(10);
+                $savings = Saving::orderBy('created_at', 'desc')->paginate(10);
                 $type = 'ADMINISTRATEUR';
             }else{
                 $savings =  Saving::where('business_id', Auth::user()->business_id)
-                    ->paginate(10);
+                    ->orderBy('created_at', 'desc')->paginate(10);
                 $type = '!ADMINISTRATEUR';
                 $business_id = Auth::user()->business_id;
             }

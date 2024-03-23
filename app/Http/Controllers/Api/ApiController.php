@@ -15,8 +15,11 @@
     use App\Models\OtherExam;
     use App\Models\Diagnostic;
     use App\Models\TypeExamBusiness;
+    use App\Models\HistoryCustomer;
     use App\Models\TypeExam;
-    
+    use App\Mail\Reservation;
+    use Illuminate\Support\Facades\Mail;
+
     class ApiController extends Controller
     {
 
@@ -37,6 +40,15 @@
             }
 
             $customer = Customer::findOrfail($request->id);
+
+            if(!is_null($request->user_id)){
+                $history_customer = new HistoryCustomer;
+                $customer_data = Customer::find($request->id);
+                $history_customer->customer_id = $request->id;
+                $history_customer->before = json_encode($customer_data);
+                $history_customer->panel = 'Application mobile';
+                $history_customer->user_id = $request->user_id;
+            }
 
             $file = $request->file('avatar');
 
@@ -59,6 +71,11 @@
             $customer->diseases = $request->diseases;
             $customer->save();
 
+            if(!is_null($request->user_id)){
+                $history_customer->after = json_encode($customer);
+                $history_customer->save();
+            }
+            
             return response()->json(["customer"=>$customer,'message'=>"Informations enregistré avec succès","status"=>"success"], 200);
         }
   
@@ -136,7 +153,7 @@
                 'business_id' => 'required',
                 // 'order' => 'required',
                 // 'card' => 'required',
-                'files' => 'required',
+                // 'files' => 'required',
                 // 'date' => 'required',
                 // 'code' => 'required',
                 // 'user_id' => 'required',
@@ -166,6 +183,8 @@
             $exam->date = $request->date;
             $exam->code = $this->hashed();
             $exam->save();
+
+            Mail::to($exam->business->email)->send(new Reservation($exam));
 
             return response()->json(['message'=>"Informations enregistré avec succès","code"=>$exam->code,"status"=>"success"], 200);
         }
@@ -204,6 +223,8 @@
             $exam->date = date('Y-m-d H:i:s',strtotime($request->date));
             $exam->code = $this->hashed();
             $exam->save();
+
+            Mail::to($exam->business->email)->send(new Reservation($exam));
 
             return response()->json(['message'=>"Informations enregistré avec succès","code"=>$exam->code,"status"=>"success"], 200);
         }

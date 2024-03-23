@@ -13,7 +13,7 @@
         public function index($id)
         {
             $customer = Customer::find($id);
-            $archives = $customer->archives()->paginate(10);
+            $archives = $customer->archives()->orderBy('created_at', 'desc')->paginate(10);
             return view('archive.index',compact('archives','customer'));
         }
 
@@ -28,7 +28,7 @@
                 $title = 'Ajouter une archive d\'examen';
             }
 
-            $other_exams = OtherExam::paginate(10);
+            $other_exams = OtherExam::orderBy('created_at', 'desc')->paginate(10);
 
             return view('archive.save',compact('archive','title','other_exams','customer_id'));
         }

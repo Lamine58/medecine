@@ -18,13 +18,13 @@
             $business_id = null;
 
             if(Auth::user()->account=="ADMINISTRATEUR"){
-                $type_exams = TypeExam::paginate(10);
+                $type_exams = TypeExam::orderBy('created_at', 'desc')->paginate(10);
                 $type = 'ADMINISTRATEUR';
             }else{
                 $type_exams =  TypeExamBusiness::join('type_exams', 'type_exam_businesses.type_exam_id', '=', 'type_exams.id')
                     ->where('type_exam_businesses.business_id', Auth::user()->business_id)
                     ->select('type_exams.*') 
-                    ->paginate(10);
+                    ->orderBy('created_at', 'desc')->paginate(10);
                 $type = '!ADMINISTRATEUR';
                 $business_id = Auth::user()->business_id;
             }
@@ -37,11 +37,11 @@
             $business_id = null;
 
             if(Auth::user()->account=="ADMINISTRATEUR"){
-                $exams = Exam::paginate(10);
+                $exams = Exam::orderBy('created_at', 'desc')->paginate(10);
                 $type = 'ADMINISTRATEUR';
             }else{
                 $business = Business::findOrfail(Auth::user()->business_id);
-                $exams =  $business->exams->paginate(10);
+                $exams =  $business->exams->orderBy('created_at', 'desc')->paginate(10);
                 $type = '!ADMINISTRATEUR';
                 $business_id = Auth::user()->business_id;
             }

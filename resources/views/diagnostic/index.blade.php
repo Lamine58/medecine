@@ -36,7 +36,7 @@
                                         <input name="name" required type="text" class="form-control" placeholder="Libellé du diagnotique">
                                     </div>
                                     <div class="col-md-3">
-                                        <button id="add" class="btn btn-primary">Enregister</button>
+                                        <button id="add" class="btn btn-primary">Rajouter</button>
                                     </div>
                                 </form>
                         
@@ -132,6 +132,7 @@
         new DataTable("#table", {
             dom: "Bfrtip",
             paging:false,
+            ordering:false,
             buttons: ["excel"],
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/French.json"

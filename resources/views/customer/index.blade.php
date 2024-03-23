@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Liste des utilisateurs')
+@section('title', 'Liste des patients')
 
 @section('content')
 
@@ -13,24 +13,28 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Liste des utilisateurs</h4>
+                            <h4 class="mb-sm-0">Liste des patients</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">utilisateurs</a></li>
-                                    <li class="breadcrumb-item active">Liste des utilisateurs</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Patients</a></li>
+                                    <li class="breadcrumb-item active">Liste des patients</li>
                                 </ol>
                             </div>
 
                         </div>
                     </div>
                 </div>
-
+                <div class="row py-2">
+                    <div class="col-md-4">
+                        <a href="{{route('customer.add',['ajouter'])}}" id="add" class="btn btn-primary">Ajouter un patient <i class="ri-add-fill"></i></a>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <table id="table" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                <table id="table" class="table table-bordered dt-responsive table-striped align-middle" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -86,6 +90,16 @@
                                                             <li>
                                                                 <a href="{{route('measure.index',[$customer->id])}}" class="dropdown-item remove-item-btn">
                                                                     <i class="ri-file-list-2-line align-bottom me-2 text-muted" ></i> Historique des relevés
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="{{route('customer.add',[$customer->id])}}" class="dropdown-item remove-item-btn">
+                                                                    <i class="ri-user-line align-bottom me-2 text-muted" ></i> Mofification du profil patient
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="{{route('customer.history',[$customer->id])}}" class="dropdown-item remove-item-btn">
+                                                                    <i class="ri-file-list-2-line align-bottom me-2 text-muted" ></i> Historique de modification
                                                                 </a>
                                                             </li>
                                                             <li>
@@ -156,6 +170,7 @@
         new DataTable("#table", {
             dom: "Bfrtip",
             paging:false,
+            ordering:false,
             buttons: ["excel"],
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/French.json"

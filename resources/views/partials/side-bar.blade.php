@@ -40,7 +40,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('customer.index')}}">
-                        <i class="ri-user-line"></i> <span data-key="t-dashboards">Utilisateurs</span>
+                        <i class="ri-user-line"></i> <span data-key="t-dashboards">Patients</span>
                     </a>
                 </li>
 
